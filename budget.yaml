@@ -1,0 +1,30 @@
+Description: "Basic Budget test"
+Resources:
+  BudgetExample:
+    Type: "AWS::Budgets::Budget"
+    Properties:
+      Budget:
+        BudgetLimit:
+          Amount: 5
+          Unit: USD
+        TimeUnit: MONTHLY
+        TimePeriod:
+          Start: 1672531200
+          End: 1704067200
+        BudgetType: COST
+        CostFilters:
+          AZ:
+            - us-east-1
+            - us-west-1
+            - us-east-2
+      NotificationsWithSubscribers:
+        - Notification:
+            NotificationType: ACTUAL
+            ComparisonOperator: GREATER_THAN
+            Threshold: 0.1
+          Subscribers:
+            - SubscriptionType: EMAIL
+              Address: sandeshlavhandejain@gmail.com
+            - SubscriptionType: EMAIL
+              Address: nidhikri488@gmail.com
+       
